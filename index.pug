@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(http-equiv="X-UA-Compatible", content="ie=edge")
+		title Document
+		link(rel="stylesheet", href="style.css")
+	body
+		.avatar-upload
+			div.section
+				button#upload-btn Upload
+				input#upload(type="file",accept="image/*")
+			div.section
+				div.image
+					canvas#container
+			.section
+				.slide
+					span 50%	
+					input#range(type="range",min=0,max=100,value=50)
+					span 100%
+			.section
+				div.preview
+					canvas#preview(width=80,height=80)
+			.section
+				textarea
+			img#image
+		script(src="index.js")
+		

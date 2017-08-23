@@ -1,0 +1,122 @@
+* {
+	box-sizing: border-box;
+	user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+}
+
+body {
+	margin: 0;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, "Microsoft YaHei UI", sans-serif;
+	font-size: 14px;
+	&::-webkit-scrollbar{
+		display: none;
+	}
+}
+
+div.section {
+	min-height: 64px;
+	padding: 14px 16px;
+	width: 100%;
+	display: block;
+}
+
+button#upload-btn {
+	outline: none;
+	border: none;
+	border-radius: 2px;
+	padding: 8px 16px;
+	background-color: #2196f3;
+	color: #ffffff;
+	text-transform: uppercase;
+	font-size: 14px;
+	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .3);
+}
+
+input#upload {
+	display: none;
+}
+
+div.image {
+	width: 300px;
+	height: 300px;
+	background-image: url('alphagrid.png');
+	background-repeat: repeat;
+	background-size: 5%;
+	display: block;
+	@media (max-width: 400px) {
+		width:256px;
+		height: 256px;
+	}
+}
+
+div.slide {
+	height: 48px;
+	padding: 15px 0;
+	display: grid;
+	width: 300px;
+	@media (max-width: 400px) {
+		width:256px;
+	}
+	grid-template-columns: 36px calc(100% - 72px) 36px;
+	input {
+		grid-column: 2;
+	}
+	span {
+		font-size: 14px;
+		height: 18px;
+		display: block;
+		line-height: 18px;
+		width: 36px;
+	}
+	span:first-of-type {
+		grid-column: 1;
+		text-align: left;
+	}
+	span:last-of-type {
+		grid-column: 3;
+		text-align: right;
+	}
+}
+
+div.preview {
+	border-radius: 50%;
+	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .3);
+	background-image: url('alphagrid.png');
+	background-repeat: repeat;
+	background-size: 15%;
+	width: 80px;
+	height: 80px;
+	overflow: hidden;
+	canvas {
+		width: 80px;
+		height: 80px;
+		border: 1px solid white;
+		border-radius: 50%;
+	}
+}
+
+textarea {
+	width: 300px;
+	height: 300px;
+	resize: none;
+	display: block;
+	outline: none;
+	border: 1px solid #e0e0e0;
+	border-radius: 2px;
+	transition: box-shadow ease 300ms;
+	padding: 0 8px;
+	font-size: 14px;
+	font-family: monospace;
+	&:focus {
+		box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .3);
+	}
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	@media (max-width: 400px) {
+		width: 256px;
+		height: 256px;
+	}
+}

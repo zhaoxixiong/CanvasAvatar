@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css"/>
+  </head>
+  <body>
+    <div class="avatar-upload">
+      <div class="section">
+        <button id="upload-btn">Upload</button>
+        <input id="upload" type="file" accept="image/*"/>
+      </div>
+      <div class="section">
+        <div class="image">
+          <canvas id="container"></canvas>
+        </div>
+      </div>
+      <div class="section">
+        <div class="slide"><span>50%	</span>
+          <input id="range" type="range" min="0" max="100" value="50"/><span>100%</span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="preview">
+          <canvas id="preview" width="80" height="80"></canvas>
+        </div>
+      </div>
+      <div class="section">
+        <textarea></textarea>
+      </div><img id="image"/>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
