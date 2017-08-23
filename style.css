@@ -12,6 +12,24 @@ body {
   body::-webkit-scrollbar {
     display: none; }
 
+div.fork {
+  width: 168px;
+  height: 36px;
+  display: block;
+  line-height: 36px;
+  background-color: #f44336;
+  color: #ffffff;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 5px;
+  position: fixed;
+  right: -40px;
+  top: 24px;
+  transform: rotateZ(45deg); }
+  div.fork a {
+    color: #ffffff;
+    text-decoration: none; }
+
 div.section {
   min-height: 64px;
   padding: 14px 16px;
