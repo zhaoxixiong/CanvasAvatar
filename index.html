@@ -6,33 +6,46 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>CanvasAvatar</title>
     <link rel="stylesheet" href="style.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet"/>
   </head>
   <body>
     <div class="fork"> <a href="https://github.com/DevChache/CanvasAvatar/">Fork on Github</a></div>
-    <div class="avatar-upload">
-      <div class="section">
-        <button id="upload-btn">Upload</button>
-        <input id="upload" type="file" accept="image/*"/>
-      </div>
-      <div class="section">
-        <div class="image">
-          <canvas id="container"></canvas>
+    <h1>Canvas Avatar Maker</h1>
+    <h2>Tested under Chrome 60 and Safari.</h2>
+    <div class="avatar-canvas">
+      <div class="section g1">
+        <div class="title" data_index="1">Select an image from local device.</div>
+        <div class="upload">
+          <button id="upload-btn">Upload</button>
+          <input id="upload" type="file" accept="image/*"/>
         </div>
       </div>
-      <div class="section">
-        <div class="slide"><span>50%	</span>
-          <input id="range" type="range" min="0" max="100" value="50"/><span>150%</span>
-        </div>
-      </div>
-      <div class="section">
+      <div class="section g2">
+        <div class="title" data_index="2">Preview avatar. (80px * 80px)</div>
         <div class="preview">
           <canvas id="preview" width="80" height="80"></canvas>
         </div>
       </div>
-      <div class="section">
-        <textarea></textarea>
+      <div class="section g3">
+        <div class="title" data_index="3">Drag, click or tap to get avatar.</div>
+        <div class="image">
+          <canvas id="container"></canvas>
+        </div>
+      </div>
+      <div class="section g4">
+        <div class="title" data_index="5">Preview DataURL</div>
+        <div class="datacontent">
+          <textarea></textarea>
+        </div>
+      </div>
+      <div class="section g5">
+        <div class="title" data_index="4">Change selection size.</div>
+        <div class="slide"><span>50%	</span>
+          <input id="range" type="range" min="0" max="100" value="50"/><span>150%</span>
+        </div>
       </div><img id="image"/>
     </div>
+    <div class="footer"><span class="name">DevChache</span><span class="word">Do for dreams, Be for Yuan.</span></div>
     <script src="index.js"></script>
   </body>
 </html>

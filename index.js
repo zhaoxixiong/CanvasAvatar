@@ -8,6 +8,7 @@ var context_preview = canvas_preview.getContext('2d');
 var image = document.querySelector('img#image');
 var slider = document.querySelector('input#range');
 var textarea = document.querySelector('textarea');
+var SWITCH = false;
 var CANVAS_WIDTH = 300;
 var CANVAS_HEIGHT = 300;
 var X = 150;
@@ -82,12 +83,24 @@ var DisplayDataUrl = function () {
     }, 100);
 };
 image.style.opacity = '0';
-setTimeout(function () {
-    image.style.display = 'block';
-    UpdateProperties();
-    DrawContext();
-    image.style.display = 'none';
-}, 16);
+// setTimeout(() => {
+//   image.style.display = 'block';
+//   UpdateProperties();
+//   DrawContext();
+//   image.style.display = 'none';
+// }, 16);
+var slider_interval;
+slider.onmousedown = function (ev) {
+    slider_interval = setInterval(function () {
+        var value = parseInt(slider.value) + 50;
+        RADIUS = value / 100 * ORI_RADIUS;
+        DrawContext();
+    }, 50);
+};
+slider.onmouseup = function (ev) {
+    if (slider_interval !== void 0)
+        clearInterval(slider_interval);
+};
 slider.onchange = function (ev) {
     var value = parseInt(slider.value) + 50;
     RADIUS = value / 100 * ORI_RADIUS;
@@ -108,6 +121,7 @@ upload_control.addEventListener('change', function (ev) {
                 UpdateProperties();
                 DrawContext();
                 image.style.display = 'none';
+                SWITCH = true;
             }, 200);
         };
         // reader.onprogress = (ev) => { console.log(ev.loaded / ev.total); };
@@ -116,6 +130,8 @@ upload_control.addEventListener('change', function (ev) {
 var DRAGGING = false;
 var TOUCHSTART_ID = void 0;
 canvas.onmousedown = function (ev) {
+    if (!SWITCH)
+        return false;
     DRAGGING = true;
     ev.stopPropagation();
     // ev.preventDefault();
@@ -126,6 +142,8 @@ canvas.onmousedown = function (ev) {
     setTimeout(function () { DrawContext(); }, 16);
 };
 canvas.ontouchstart = function (ev) {
+    if (!SWITCH)
+        return false;
     DRAGGING = true;
     TOUCHSTART_ID = ev.touches[0].identifier;
     ev.stopPropagation();
@@ -137,17 +155,23 @@ canvas.ontouchstart = function (ev) {
     setTimeout(function () { DrawContext(); }, 16);
 };
 canvas.onmouseup = function (ev) {
+    if (!SWITCH)
+        return false;
     DRAGGING = false;
     ev.stopPropagation();
     DisplayDataUrl();
 };
 canvas.ontouchend = function (ev) {
+    if (!SWITCH)
+        return false;
     DRAGGING = false;
     TOUCHSTART_ID = void 0;
     ev.stopPropagation();
     DisplayDataUrl();
 };
 canvas.onmousemove = function (ev) {
+    if (!SWITCH)
+        return false;
     ev.stopPropagation();
     ev.preventDefault();
     if (DRAGGING || ev.buttons === 1) {
@@ -159,6 +183,8 @@ canvas.onmousemove = function (ev) {
     }
 };
 canvas.ontouchmove = function (ev) {
+    if (!SWITCH)
+        return false;
     ev.stopPropagation();
     ev.preventDefault();
     if (ev.touches.length === 0)

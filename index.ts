@@ -10,6 +10,7 @@ let image = document.querySelector('img#image') as HTMLImageElement;
 let slider = document.querySelector('input#range') as HTMLInputElement;
 let textarea = document.querySelector('textarea') as HTMLTextAreaElement;
 
+let SWITCH = false;
 let CANVAS_WIDTH = 300;
 let CANVAS_HEIGHT = 300;
 let X = 150;
@@ -90,13 +91,25 @@ let DisplayDataUrl = () => {
 };
 
 image.style.opacity = '0';
-setTimeout(() => {
-  image.style.display = 'block';
-  UpdateProperties();
-  DrawContext();
-  image.style.display = 'none';
-}, 16);
+// setTimeout(() => {
+//   image.style.display = 'block';
+//   UpdateProperties();
+//   DrawContext();
+//   image.style.display = 'none';
+// }, 16);
 
+let slider_interval: NodeJS.Timer;
+
+slider.onmousedown = (ev) => {
+  slider_interval = setInterval(() => {
+    let value = parseInt(slider.value) + 50;
+    RADIUS = value / 100 * ORI_RADIUS;
+    DrawContext();
+  }, 50);
+};
+slider.onmouseup = (ev) => {
+  if (slider_interval !== void 0) clearInterval(slider_interval);
+};
 slider.onchange = (ev) => {
   let value = parseInt(slider.value) + 50;
   RADIUS = value / 100 * ORI_RADIUS;
@@ -117,8 +130,8 @@ upload_control.addEventListener('change', (ev) => {
         image.style.display = 'block';
         UpdateProperties();
         DrawContext();
-
         image.style.display = 'none';
+        SWITCH = true;
       }, 200);
     };
     // reader.onprogress = (ev) => { console.log(ev.loaded / ev.total); };
@@ -127,6 +140,7 @@ upload_control.addEventListener('change', (ev) => {
 let DRAGGING = false;
 let TOUCHSTART_ID = void 0;
 canvas.onmousedown = (ev) => {
+  if (!SWITCH) return false;
   DRAGGING = true;
   ev.stopPropagation();
   // ev.preventDefault();
@@ -137,6 +151,7 @@ canvas.onmousedown = (ev) => {
   setTimeout(() => { DrawContext(); }, 16);
 };
 canvas.ontouchstart = (ev) => {
+  if (!SWITCH) return false;
   DRAGGING = true;
   TOUCHSTART_ID = ev.touches[0].identifier;
   ev.stopPropagation();
@@ -151,17 +166,20 @@ canvas.ontouchstart = (ev) => {
   setTimeout(() => { DrawContext(); }, 16);
 };
 canvas.onmouseup = (ev) => {
+  if (!SWITCH) return false;
   DRAGGING = false;
   ev.stopPropagation();
   DisplayDataUrl();
 };
 canvas.ontouchend = (ev) => {
+  if (!SWITCH) return false;
   DRAGGING = false;
   TOUCHSTART_ID = void 0;
   ev.stopPropagation();
   DisplayDataUrl();
 };
 canvas.onmousemove = (ev) => {
+  if (!SWITCH) return false;
   ev.stopPropagation();
   ev.preventDefault();
   if (DRAGGING || ev.buttons === 1) {
@@ -173,6 +191,7 @@ canvas.onmousemove = (ev) => {
   }
 };
 canvas.ontouchmove = (ev) => {
+  if (!SWITCH) return false;
   ev.stopPropagation();
   ev.preventDefault();
   if (ev.touches.length === 0) return;

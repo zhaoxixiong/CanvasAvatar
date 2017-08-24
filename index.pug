@@ -6,26 +6,39 @@ html(lang="en")
 		meta(http-equiv="X-UA-Compatible", content="ie=edge")
 		title CanvasAvatar
 		link(rel="stylesheet", href="style.css")
+		link(href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet")
 	body
 		.fork 
 			a(href="https://github.com/DevChache/CanvasAvatar/") Fork on Github
-		.avatar-upload
-			div.section
-				button#upload-btn Upload
-				input#upload(type="file",accept="image/*")
-			div.section
-				div.image
+		h1 Canvas Avatar Maker
+		h2 Tested under Chrome 60 and Safari.
+		.avatar-canvas
+			.section.g1
+				.title(data_index=1) Select an image from local device.
+				.upload
+					button#upload-btn Upload
+					input#upload(type="file",accept="image/*")
+			.section.g2
+				.title(data_index=2) Preview avatar. (80px * 80px)
+				.preview
+					canvas#preview(width=80,height=80)
+			.section.g3
+				.title(data_index=3) Drag, click or tap to get avatar.
+				.image
 					canvas#container
-			.section
+			.section.g4
+				.title(data_index=5) Preview DataURL
+				.datacontent
+					textarea
+			.section.g5
+				.title(data_index=4) Change selection size.
 				.slide
 					span 50%	
 					input#range(type="range",min=0,max=100,value=50)
 					span 150%
-			.section
-				div.preview
-					canvas#preview(width=80,height=80)
-			.section
-				textarea
 			img#image
+		.footer
+			span.name DevChache
+			span.word Do for dreams, Be for Yuan.
 		script(src="index.js")
 		
