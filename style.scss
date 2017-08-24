@@ -8,7 +8,16 @@
 
 body {
 	margin: 0;
-	font-family: 'Roboto', "Microsoft YaHei", sans-serif;
+	width: 300px;
+	position: absolute;
+	left:calc(50% - 150px);
+	@media (min-width: 640px) {
+		width:640px;
+		left: calc(50% - 320px);
+	}
+	font-family: 'Roboto',
+	"Microsoft YaHei",
+	sans-serif;
 	font-size: 14px;
 	&::-webkit-scrollbar {
 		display: none;
@@ -72,6 +81,7 @@ div.fork {
 			}
 		}
 		.upload {
+			margin-top: 16px;
 			button#upload-btn {
 				outline: none;
 				border: none;
